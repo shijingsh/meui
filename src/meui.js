@@ -52,7 +52,6 @@
             ,'jquery.iframe-transport': 'modules/upload/jquery.iframe-transport'          //上传
             ,'jquery.fileupload-process': 'modules/upload/jquery.fileupload-process'      //上传
             ,'jquery.fileupload-validate.js': 'modules/upload/jquery.fileupload-validate' //上传
-            ,'meui.all': '../meui.all' //PC模块合并版
         };
 
     //记录基础数据
@@ -137,7 +136,7 @@
                 : ( typeof callback === 'function' && callback.apply(meui, exports) );
         }
 
-        //如果引入了完整库（meui.all.js），内置的模块则不必再加载
+        //如果引入了完整库（all.js），内置的模块则不必再加载
         if(apps.length === 0
             || (meui['meui.all'] && modules[item])
             || (!meui['meui.all'] && meui['meui.mobile'] && modules[item])

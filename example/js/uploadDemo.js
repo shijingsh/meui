@@ -3,18 +3,15 @@ meui.use('upload', function(){
         ,upload = meui.upload;
     upload.render({
         elem: '#test1'
-        ,url: 'http://ms.365me.me/enterpriseupload/uploadImgNew.do'
+        ,url: 'http://ms.365me.me/enterpriseupload/uploadImg.do'
         ,multiple: true
         ,number: 3
         ,size: 1024
-        ,before: function(obj){
-            //
+        ,done: function(e, data){
+            console.log("demo done")
         }
-        ,done: function(res){
-            //上传完毕
-        }
-        ,error: function(obj){
-            console.log(obj)
+        ,fail: function(e, data){
+            console.log(data)
         }
     });
 });

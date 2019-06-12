@@ -64,7 +64,6 @@ function scripts() {
     var mod = ''
         ,src = [
         './src/**/*'+ mod +'.js'
-        ,'!./src/meui/all.js'
     ]
         ,dir = destDir(ver);
 
@@ -72,7 +71,7 @@ function scripts() {
         .pipe(gulp.dest('./'+ dir));
 }
 
-var build = gulp.series(clean, gulp.parallel(styles, scripts,scriptsAll));
+var build = gulp.series(clean, gulp.parallel(styles, scripts));
 
 exports.build = build;
 /*
