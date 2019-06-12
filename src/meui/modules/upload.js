@@ -32,13 +32,7 @@ meui.define(['jquery',
         , thisUpload = function () {
             var that = this;
             return {
-                upload: function (files) {
-                    that.upload.call(that, files);
-                }
-                , reload: function (options) {
-                    that.reload.call(that, options);
-                }
-                , config: that.config
+                config: that.config
             }
         }
         //构造器
@@ -50,19 +44,31 @@ meui.define(['jquery',
 
     //默认配置
     Class.prototype.config = {
-        accept: 'images' //允许上传的文件类型：images/file/video/audio
-        , exts: '' //允许上传的文件后缀名
-        , auto: true //是否选完文件后自动上传
-        , bindAction: '' //手动上传触发的元素
-        , url: '' //上传地址
-        , field: 'file' //文件字段名
-        , acceptMime: '' //筛选出的文件类型，默认为所有文件
-        , method: 'post' //请求上传的 http 类型
-        , data: {} //请求上传的额外参数
-        , drag: true //是否允许拖拽上传
-        , size: 0 //文件限制大小，默认不限制
-        , number: 0 //允许同时上传的文件数，默认不限制
-        , multiple: false //是否允许多文件上传，不支持ie8-9
+        type: "POST",
+        autoUpload: true,
+        maxFileSize: 5 * 1024 * 1024 ,
+        limitMultiFileUploadSize : 5 * 1024 * 1024,
+        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
+        formData: {pk_user: "microVideoLogo", uploadType: 0, folder: 2, messageId: "uploadFileNewDemand"},
+        forceIframeTransport: true,
+        multipart: false,
+        messages: {
+            maxNumberOfFiles:"一次只能最多上传3张图片",
+            maxFileSize: '文件大小不能超过 5MB',
+            acceptFileTypes: '只可以上传gif/jpg/png 格式图片'
+        },
+        done: function (e, data) {
+            console.log("done")
+        },
+        fail: function (e, data) {
+            console.log("fail")
+        }
+        ,processfail: function (e, data) {
+            var currentFile = data.files[data.index];
+            if (data.files.error && currentFile.error) {
+                console.log("processfail")
+            }
+        }
     };
 
     //初始渲染
@@ -71,8 +77,19 @@ meui.define(['jquery',
             , options = that.config;
 
         options.elem = $(options.elem);
-        options.bindAction = $(options.bindAction);
 
+        $(options.elem).fileupload(options);
+
+        that.events();
+    };
+    //事件处理
+    Class.prototype.events = function(){
+        var that = this
+            ,options = that.config
+
+
+
+        options.elem.data('haveEvents', true);
     };
     //核心入口
     upload.render = function (options) {
