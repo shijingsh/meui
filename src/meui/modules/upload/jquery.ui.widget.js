@@ -745,6 +745,9 @@
   var widget = $.widget;
 
 
-
+    //暴露给meui
+    meui.define(function(exports){
+        exports('jquery.ui.widget', $);
+    });
 
 }));

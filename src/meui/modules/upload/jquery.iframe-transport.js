@@ -223,5 +223,8 @@
             }
         }
     });
-
+    //暴露给meui
+    meui.define(function(exports){
+        exports('jquery.iframe-transport', $);
+    });
 }));
