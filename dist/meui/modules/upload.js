@@ -1,0 +1,1 @@
+meui.define("layer",function(n){"use strict";var i="upload",e={config:{},set:function(n){var e=this;return e.config=$.extend({},e.config,n),e},on:function(n,e){return layui.onevent.call(this,i,n,e)}};n(i,e)});

@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/mg365/meui#readme",
   "devDependencies": {
-    "chai": "^4.2.0",
     "del": "^4.1.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -31,18 +30,7 @@
     "gulp-rename": "^1.4.0",
     "gulp-uglify": "^3.0.2",
     "gulp-zip": "^5.0.0",
-    "karma": "^4.1.0",
-    "karma-chai": "^0.1.0",
-    "karma-chai-sinon": "^0.1.5",
-    "karma-coverage": "^1.1.1",
-    "karma-mocha": "^1.3.0",
-    "karma-mocha-reporter": "^2.2.3",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sauce-launcher": "^1.1.0",
-    "minimist": "^1.2.0",
-    "mocha": "^6.1.4",
-    "sinon": "^7.3.2",
-    "sinon-chai": "^3.3.0"
+    "minimist": "^1.2.0"
   },
   "dependencies": {}
 }
