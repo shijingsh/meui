@@ -10977,9 +10977,9 @@ jQuery.fn.andSelf = jQuery.fn.addBack;
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 
-//将jQuery对象局部暴露给layui
-layui.define(function(exports){
-  layui.$ = jQuery;
+//将jQuery对象局部暴露给meui
+meui.define(function(exports){
+  meui.$ = jQuery;
   exports('jquery', jQuery);
 });
 

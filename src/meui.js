@@ -47,6 +47,11 @@
         ,modules = {
             jquery: 'modules/jquery', //DOM库（第三方）
             upload: 'modules/upload' //上传
+            ,'jquery.ui.widget': 'modules/upload/jquery.ui.widget'                  //上传
+            ,'jquery.fileupload': 'modules/upload/jquery.fileupload'                //上传
+            ,'jquery.iframe-transport': 'modules/upload/jquery.iframe-transport'          //上传
+            ,'jquery.fileupload-process': 'modules/upload/jquery.fileupload-process'      //上传
+            ,'jquery.fileupload-validate.js': 'modules/upload/jquery.fileupload-validate' //上传
             ,'meui.all': '../meui.all' //PC模块合并版
         };
 
@@ -148,7 +153,7 @@
                 //如果是扩展模块，则判断模块路径值是否为 {/} 开头，
                 //如果路径值是 {/} 开头，则模块路径即为后面紧跟的字符。
                 //否则，则按照 base 参数拼接模块路径
-                ,url = ( modules[item] ? (dir + 'lay/')
+                ,url = ( modules[item] ? (dir + 'meui/')
                             : (/^\{\/\}/.test(that.modules[item]) ? '' : (config.base || ''))
                     ) + (that.modules[item] || item) + '.js';
 

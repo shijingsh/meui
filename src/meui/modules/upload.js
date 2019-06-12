@@ -2,7 +2,13 @@
  @Title: meui.upload 文件上传
  */
 
-meui.define('layer' , function(exports){
+meui.define(['jquery',
+    'jquery.ui.widget',
+    'jquery.fileupload',
+    'jquery.iframe-transport',
+    'jquery.fileupload-process',
+    'jquery.fileupload-validate.js'
+    ] , function(exports){
   "use strict";
 
   var  MOD_NAME = 'upload'
