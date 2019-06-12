@@ -1,10 +1,7 @@
 /*!
 
  @Title: Meui
- @Description：经典模块化前端框架
- @Site: www.layui.com
- @Author: 贤心
- @License：MIT
+ @Description：365me模块化前端框架
 
  */
 
@@ -48,28 +45,8 @@
 
         //内置模块
         ,modules = {
-            layer: 'modules/layer' //弹层
-            ,laydate: 'modules/laydate' //日期
-            ,laypage: 'modules/laypage' //分页
-            ,laytpl: 'modules/laytpl' //模板引擎
-            ,layim: 'modules/layim' //web通讯
-            ,layedit: 'modules/layedit' //富文本编辑器
-            ,form: 'modules/form' //表单集
-            ,upload: 'modules/upload' //上传
-            ,transfer: 'modules/transfer' //上传
-            ,tree: 'modules/tree' //树结构
-            ,table: 'modules/table' //表格
-            ,element: 'modules/element' //常用元素操作
-            ,rate: 'modules/rate'  //评分组件
-            ,colorpicker: 'modules/colorpicker' //颜色选择器
-            ,slider: 'modules/slider' //滑块
-            ,carousel: 'modules/carousel' //轮播
-            ,flow: 'modules/flow' //流加载
-            ,util: 'modules/util' //工具块
-            ,code: 'modules/code' //代码修饰器
-            ,jquery: 'modules/jquery' //DOM库（第三方）
-
-            ,mobile: 'modules/mobile' //移动大模块 | 若当前为开发目录，则为移动模块入口，否则为移动模块集合
+            jquery: 'modules/jquery', //DOM库（第三方）
+            upload: 'modules/upload' //上传
             ,'meui.all': '../meui.all' //PC模块合并版
         };
 
