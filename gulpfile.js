@@ -3,16 +3,15 @@
 */
 
 var pkg = require('./package.json');
-var inds = pkg.independents;
+//var inds = pkg.independents;
 
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
-var minify = require('gulp-minify-css');
+var minify = require('gulp-clean-css');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var header = require('gulp-header');
 var del = require('del');
-var gulpif = require('gulp-if');
 var minimist = require('minimist');
 var zip = require('gulp-zip');
 
@@ -24,10 +23,12 @@ var argv = require('minimist')(process.argv.slice(2), {
 })
 
 //注释
+/*
 ,note = [
-  '/** <%= pkg.realname %>-v<%= pkg.version %> <%= pkg.license %> License By <%= pkg.homepage %> */\n <%= js %>'
+  '/!** <%= pkg.realname %>-v<%= pkg.version %> <%= pkg.license %> License By <%= pkg.homepage %> *!/\n <%= js %>'
   ,{pkg: pkg, js: ';'}
 ]
+*/
 
 //模块
 ,mods = 'jquery,upload'
@@ -49,18 +50,18 @@ var argv = require('minimist')(process.argv.slice(2), {
   minjs: function(ver) {
     ver = ver === 'open';
      
-    //可指定模块压缩，eg：gulp minjs --mod layer,laytpl
+    //可指定模块压缩，eg：gulp minjs --mod
     var mod = argv.mod ? function(){
       return '(' + argv.mod.replace(/,/g, '|') + ')';
     }() : ''
     ,src = [
       './src/**/*'+ mod +'.js'
-      ,'!./src/lay/all.js'
+      ,'!./src/meui/all.js'
     ]
     ,dir = destDir(ver);
 
     return gulp.src(src).pipe(uglify())
-     .pipe(header.apply(null, note))
+     //.pipe(header.apply(null, note))
     .pipe(gulp.dest('./'+ dir));
   }
   
@@ -75,7 +76,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     
     return gulp.src(src).pipe(uglify())
       .pipe(concat('meui.all.js', {newLine: ''}))
-      .pipe(header.apply(null, note))
+      //.pipe(header.apply(null, note))
     .pipe(gulp.dest('./'+ dir));
   }
 
@@ -94,21 +95,21 @@ var argv = require('minimist')(process.argv.slice(2), {
     
     return gulp.src(src).pipe(minify({
       compatibility: 'ie7'
-    })).pipe(header.apply(null, noteNew))
+    }))//.pipe(header.apply(null, noteNew))
     .pipe(gulp.dest('./'+ dir +'/css'));
   }
-  
+
   //复制iconfont文件
   ,font: function(ver){
     ver = ver === 'open';
-    
+
     var dir = destDir(ver);
-    
+
     return gulp.src('./src/font/*')
     .pipe(rename({}))
     .pipe(gulp.dest('./'+ dir +'/font'));
   }
-  
+
   //复制组件可能所需的非css和js资源
   ,mv: function(ver){
     ver = ver === 'open';
