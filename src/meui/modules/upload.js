@@ -12,7 +12,7 @@ meui.define(['jquery',
     "use strict";
     var $ = meui.$
     var MOD_NAME = 'upload'
-
+        , eventsInit = false
         , upload = {
             config: {} //全局配置项
 
@@ -49,7 +49,7 @@ meui.define(['jquery',
         maxFileSize: 5 * 1024 * 1024 ,
         limitMultiFileUploadSize : 5 * 1024 * 1024,
         acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
-        formData: {pk_user: "microVideoLogo", uploadType: 0, folder: 2, messageId: "uploadFileNewDemand"},
+        formData: {pk_user: "microVideoLogo", uploadType: 0, folder: 2},
         forceIframeTransport: true,
         multipart: false,
         messages: {
@@ -58,15 +58,18 @@ meui.define(['jquery',
             acceptFileTypes: '只可以上传gif/jpg/png 格式图片'
         },
         done: function (e, data) {
-            console.log("done")
+            //console.log("done")
+        },
+        success: function ( data) {
+            //console.log("upload success")
         },
         fail: function (e, data) {
-            console.log("fail")
-        }
-        ,processfail: function (e, data) {
+            //console.log("fail")
+        },
+        processfail: function (e, data) {
             var currentFile = data.files[data.index];
             if (data.files.error && currentFile.error) {
-                console.log("processfail")
+                //console.log("processfail")
             }
         }
     };
@@ -76,7 +79,9 @@ meui.define(['jquery',
         var that = this
             , options = that.config;
 
-        options.elem = $(options.elem);
+        if(!options.formData.messageId){
+            options.formData.messageId = options.elem.substring(1);
+        }
 
         $(options.elem).fileupload(options);
 
@@ -85,11 +90,23 @@ meui.define(['jquery',
     //事件处理
     Class.prototype.events = function(){
         var that = this
-            ,options = that.config
+            ,options = that.config;
 
+        if(!eventsInit){
+            /** 上传附件成功后操作 **/
+            $(window).on("message onmessage", function(e) {
+                var msg = e.originalEvent.data;
+                if (msg) {
+                    var jsonObject = JSON.parse(msg);
+                    if(options.success && jsonObject && jsonObject.messageId){
+                        options.success(jsonObject)
+                    }
+                }
+            });
+            //一个页面只执行一次监听
+            eventsInit = true
+        }
 
-
-        options.elem.data('haveEvents', true);
     };
     //核心入口
     upload.render = function (options) {

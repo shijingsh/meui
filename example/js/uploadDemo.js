@@ -3,7 +3,7 @@ meui.use('upload', function(){
         ,upload = meui.upload;
     upload.render({
         elem: '#test1'
-        ,url: 'http://ms.365me.me/enterpriseupload/uploadImg.do'
+        ,url: 'http://ms.365me.com/enterpriseupload/uploadImgNew.do'
         ,multiple: true
         ,number: 3
         ,size: 1024
