@@ -70,6 +70,7 @@ meui.define(['jquery',
             var currentFile = data.files[data.index];
             if (data.files.error && currentFile.error) {
                 //console.log("processfail")
+                alert(currentFile.error);
             }
         }
     };
